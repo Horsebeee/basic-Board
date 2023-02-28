@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <link href="/css/join.css" rel="stylesheet">
+    <link href="/css/common.css" rel="stylesheet">
+</head>
+<body>
+<div class="join_container">
+    <header class="logo">
+        <div class="join_logo">
+            <b>게시판 회원가입</b>
+        </div>
+        <ul class="join_txt">
+            <li>친구들의 사진과 동영상을 보려면</li>
+            <li> 가입하세요.</li>
+        </ul>
+    </header>
+
+    <form id="form" name="form" th:object="${dto}" th:action="@{/user/join}"  th:method="post">
+        <input class="csrf" type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+
+        <input class="name" placeholder="이름을 입력해주세요." type="text"  th:field="*{name}">
+        <div>
+            <input class="id" placeholder="아이디를 입력해주세요." type="text" th:field="*{username}">
+            <span class="vaild" id="username" th:text="${valid_user_id}">아이디</span>
+        </div>
+        <div>
+            <input class="pw" placeholder="비밀번호를 입력해주세요." type="password" th:field="*{password}">
+            <span class="vaild" id="password" th:text="${valid_password}">비밀번호</span>
+        </div>
+        <div>
+            <input class="nickname" placeholder="닉네임을 입력해주세요." type="text" th:field="*{nickname}">
+            <span class="vaild" id="nickname" th:text="${valid_nickname}">닉네임</span>
+        </div>
+
+        <button class="joinBtn" type="submit">가입</button>
+    </form>
+</div>
+
+<div class="account_login">
+    <ul>
+        <li>계정이 있으신가요?</li>
+        <li><a href="user/login">로그인</a></li>
+    </ul>
+</div>
+</body>
+</html>
