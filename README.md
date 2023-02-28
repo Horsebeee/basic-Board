@@ -9,7 +9,7 @@
 - custom validator 를 이용한 중복 검사
 - Bcrypt Password Encoder 를 이용한 비밀번호 암호화
 - 게시판 CRUD 구현을 REST 방식으로 구현
-- record 를 이용한 dto 
+- record 를 이용한 dto 구현
 
 #### * 기간
 2023/02/20 ~
