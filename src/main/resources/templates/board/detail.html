@@ -1,0 +1,47 @@
+<div th:replace="layout/header"></div>
+<div id="post_list">
+    <div class="py-3 text-center">
+        <h2>게시글</h2>
+    </div>
+    <div class="col-md-12">
+        <form class="card">
+            <div class="card-header d-flex justify-content-between">
+                <label for="id" th:text="|번호 : ${detail.board_no}|">번호</label>
+                <input type="hidden" id="id" th:value="${detail.board_no}">
+                <label for="createdDate" th:text="${detail.created_date}"></label>
+                <input type="hidden" id="createdDate" th:value="${detail.created_date}">
+            </div>
+            <div class="card-header d-flex justify-content-between">
+                <label for="writer" th:text="|작성자 : ${detail.board_no}|">작성자</label>
+                <label for="view_cnt"><i class=" bi bi-eye-fill" th:text="${detail.view_cnt}">1</i></label>
+            </div>
+            <div class="card-body">
+                <label for="title">제목</label>
+                <input type="text" class="form-control" id="title" th:value="${detail.title}" readonly>
+                <br/>
+                <label for="content">내용</label>
+                <textarea rows="5" class="form-control" id="content" th:text="${detail.content}" readonly></textarea>
+            </div>
+        </form>
+        <form th:object="${detail}" >
+            <div>
+                <input type="hidden" id="board_no" class="form-control"  th:field="*{board_no}">
+                <!--                <input type="hidden" id="writer" class="form-control"  th:field="*{writer.username}">-->
+            </div>
+
+            <div class="row" th:if="${principal.username.equals(detail.writer.username)}">
+                <hr class="my-4">
+                <div class="col">
+                    <button class="w-100 btn btn-primary float-end" type="button"
+                            th:onclick="|location.href='@{/board/update/{boardNum}(boardNum=${detail.board_no})}'|">
+                        수정하기
+                    </button>
+                </div>
+                <div class="col">
+                    <button class="w-100 btn btn-secondary float-end" id="btn-delete" type="button">삭제하기</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div th:replace="layout/footer"></div>

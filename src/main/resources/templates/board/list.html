@@ -1,0 +1,71 @@
+<div th:replace="layout/header"></div>
+    <div class="container" style="max-width: 1000px">
+        <div class="py-3 text-center">
+            <h2>게시글 목록</h2>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary float-end bi bi-pencil-fill"
+                        th:onclick="|location.href='@{/board/form}'|"
+                        type="button" > 글 등록</button>
+<!--                <button class="btn btn-primary float-end">글 등록</button>-->
+            </div>
+        </div>
+
+        <hr class="my-4">
+        <div>
+            <table class="table" style="text-align : center">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>조회수</th>
+                        <th>등록일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each ="dto : ${dto}">
+                        <td th:text="${dto.board_no}">#</td>
+                        <td>
+                            <a th:href="@{/board/{boardNum}(boardNum=${dto.board_no})}" th:text="${dto.title}">제목</a>
+                        </td>
+                        <td th:text="${dto.writer.nickname}">작성자</td>
+                        <td th:text="${dto.view_cnt}">조회수</td>
+                        <td th:text="${dto.created_date}">등록일</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 페이지네이션 -->
+        <nav class="d-flex justify-content-center" id="pagination">
+            <ul class="pagination pagination-base pagination-boxed pagination-square mb-0">
+                <!-- Start -->
+                <li class="page-item">
+                    <a class="page-link no-border" th:text="이전"
+                      th:href="@{/board/list(page=${dto.number - 1}, sort=${param.sort} )} "
+                      th:class="'page-link' + (${dto.number<=0}?' disabled':'')">
+                        <span aria-hidden="true">«</span>
+                        <span class="sr-only">Prev</span>
+                    </a>
+                </li>
+                <!-- Middle -->
+                <li class="page-item active" th:class="page-item" th:each="pageNum : ${pageNum}">
+                    <a class="page-link no-border"
+                       th:text="${pageNum + 1}" th:href="@{/board/list(page=${pageNum}, sort=${param.sort} )}"
+                       th:class="'page-link' + (${pageNum} == ${dto.number}?' disabled':'')">1</a>
+                </li>
+                <!-- End -->
+                <li class="page-item">
+                    <a class="page-link no-border"  th:text="다음"
+                       th:href="@{/board/list(page=${dto.number + 1}, sort=${param.sort} )}"
+                       th:class="'page-link' + (${dto.number} >= ${dto.totalPages - 1}?' disabled':'')">
+                        <span class="sr-only">Next</span>
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+<div th:replace="layout/footer"></div>
