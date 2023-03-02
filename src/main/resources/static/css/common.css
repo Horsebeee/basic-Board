@@ -28,11 +28,22 @@ input {
     text-align: right;
 }
 
+#nav {
+    background: #f5f5f5;
+    padding: 12px;
+    border-top: 2px solid gainsboro;
+    border-bottom: 2px;
+}
+
 #post_list {
     position: relative;
     min-height: 100%;
     width: 100%;
     max-width: 1100px;
     margin: 0 auto 20px auto;
+}
+
+.m_t_10 {
+    margin-top: 10px;
 }
 

@@ -54,7 +54,7 @@ public class User {
 
     protected User() {}
 
-    // 회원가입 할 때
+    // 회원가입 할 때 ,회원정보 수정 할 때
     private User(String username, String password, String nickname, String name,String reg_date) {
         this.username = username;
         this.password = password;
@@ -67,6 +67,11 @@ public class User {
     // 회원가입 할 때
     public static User of(String username, String password, String nickname, String name) {
         return new User(username,password,nickname,name,LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+    }
+
+    // 수정 할 때
+    public static User of(String username, String password, String nickname, String name,String reg_date){
+        return new User(username,password,nickname,name,reg_date);
     }
 
     @Override

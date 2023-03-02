@@ -17,6 +17,11 @@ let index = {
             _this.delete();
         });
 
+        /* 회원 수정 */
+        $("#btn-modify").on("click", () => {
+            _this.modify();
+        });
+
     },
     /* 게시물 저장 */
     save: function () {
@@ -105,6 +110,54 @@ let index = {
         }
 
     },
+
+    /* 회원 수정 */
+    modify : function() {
+        const data = {
+            username: $('#username').val(),
+            nickname: $('#nickname').val(),
+            password: $('#password').val(),
+            name: $('#name').val()
+        };
+
+        // 공백 및 빈 문자열 체크
+        if (!data.nickname || data.nickname.trim() === "" || !data.password || data.password.trim() === "") {
+            alert("공백 또는 입력하지 않은 부분이 있습니다.");
+            return false;
+        }
+        // 유효성 검사
+        else if (!/^[가-힣a-zA-Z0-9]{2,10}$/.test(data.nickname)) {
+            alert("닉네임은 특수문자를 포함하지 않은 2~10자리여야 합니다.");
+            $('#username').focus();
+            return false;
+        } else if (!/(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\W)(?=\S+$).{8,16}/.test(data.password)) {
+            alert("비밀번호는 8~16자리수여야 합니다. 영문 대소문자, 숫자, 특수문자를 1개 이상 포함해야 합니다.");
+            $('#password').focus();
+            return false;
+        }
+
+        const confirmCheck = confirm("수정하시겠습니까?");
+
+        if (confirmCheck == true) {
+            $.ajax({
+                type: 'PUT',
+                url: '/api/modify/'+ data.username,
+                dataType: 'text',
+                contentType: 'application/json; charset=utf-8',
+                data: JSON.stringify(data)
+            }).done(function () {
+                alert("회원 수정이 완료되었습니다.");
+                location.href="/board/list";
+            }).fail(function (error) {
+                if (error.status === 500) {
+                    alert("이미 사용 중인 닉네임입니다.");
+                    $('#nickname').focus();
+                } else {
+                    alert(JSON.stringify(error));
+                }
+            });
+        }
+    }
 }
 
 index.init();

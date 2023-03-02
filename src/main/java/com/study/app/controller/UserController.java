@@ -1,19 +1,19 @@
 package com.study.app.controller;
 
 import com.study.app.dto.user.UserDto;
+import com.study.app.security.BoardPrincipal;
 import com.study.app.service.UserService;
 import com.study.app.validation.CheckNicknameValidator;
 import com.study.app.validation.CheckUsernameValidator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 import java.util.Map;
 
@@ -74,5 +74,19 @@ public class UserController {
         userService.createUser(dto);
         System.out.println(" ======= 회원가입 성공 ======= ");
         return "redirect:user/login";
+    }
+
+    // 회원정보 수정 페이지로 이동
+    @GetMapping("modify/{username}")
+    public String modifiedUser(@PathVariable("username") String  username,
+                               @AuthenticationPrincipal BoardPrincipal boardPrincipal,
+                               Model model
+    ) {
+        System.out.println("회원정보 수정: " + boardPrincipal.nickname());
+        model.addAttribute("principal", boardPrincipal);
+      /*  if(boardPrincipal != null) {
+            return "error";
+        }*/
+        return "user/modify";
     }
 }

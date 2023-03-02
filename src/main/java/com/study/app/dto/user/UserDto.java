@@ -30,6 +30,17 @@ public record UserDto(
 
         );
     }
+
+    /* DTO -> Entity 회원정보 수정 할 때 */
+    public User toModifyEntity(String reg_date) {
+        return User.of(
+                username,
+                password,
+                nickname,
+                name,
+                reg_date
+        );
+    }
     public static UserDto of(String username, String password, String nickname, String name) {
         return new UserDto( username, password, nickname, name);
     }

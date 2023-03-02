@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,5 +53,20 @@ public class UserService {
         System.out.println("엔티티로 변형된 user : "+user);
         userRepository.save(user);
         System.out.println("DB에 회원 저장 성공");
+    }
+
+    // 회원 정보 수정
+    @Transactional
+    public void updateUser(UserDto dto) {
+        User user = userRepository.findById(dto.username())
+                .orElseThrow(()-> new EntityNotFoundException("유저 정보가 없습니다. " + dto.username()));
+
+        UserDto userDto = new UserDto(
+                dto.username(),
+                encoder.encode(dto.password()),
+                dto.nickname(),
+                dto.name()
+        );
+        userRepository.save(userDto.toModifyEntity(user.getReg_date()));
     }
 }

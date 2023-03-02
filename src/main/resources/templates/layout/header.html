@@ -26,10 +26,9 @@
 
         <nav id ="nav">
             <div class="text-right " style="text-align: right">
-                <th:block th:if="${principal.username != null}">
-                    <span class="mx-3" th:text="|${principal.nickname}님 안녕하세요!|" >유저님 안녕하세요!</span>
-                    <a th:href="@{/logout}" class="btn btn-outline-danger">로그아웃</a>
-                </th:block>
+                <span class="mx-3" th:text="|${principal.nickname}님 안녕하세요!|" >유저님 안녕하세요!</span>
+                <a th:href="@{/logout}" class="btn btn-outline-danger">로그아웃</a>
+                <a th:href="@{/user/modify/{username}(username=${principal.username})}" class="btn btn-outline-dark bi bi-gear"></a>
             </div>
         </nav>
     </div>
