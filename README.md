@@ -41,24 +41,17 @@ Spring Boot
 ## 🖨 Contents
 
 **ERD**
-![1 login](https://user-images.githubusercontent.com/107667158/222337704-6d7ddc21-ed48-4219-9239-96a0b5a97384.png)
-![1 login png -수정](https://user-images.githubusercontent.com/107667158/222337706-1d8228b0-e8d3-41d5-b48b-cc2e6fed4dca.png)
-![2 회원가입 validChk](https://user-images.githubusercontent.com/107667158/222337707-f2a52119-12db-4e57-b2f5-68d955fa8992.png)
-![3 회원가입 중복확인](https://user-images.githubusercontent.com/107667158/222337709-0f609862-1cd7-4bcf-bcce-6b0c06bd87ac.png)
-![4 게시판 리스트](https://user-images.githubusercontent.com/107667158/222337712-11f86c7a-b513-4f7b-92bd-c1b8fe75b190.png)
-![5 남의 게시물](https://user-images.githubusercontent.com/107667158/222337714-9e500aa4-833b-428e-8461-fe02717041ea.png)
-![6 내 게시글](https://user-images.githubusercontent.com/107667158/222337715-bfa32276-3997-4f8b-9be4-19a0a728d82d.png)
-![7 게시글 수정](https://user-images.githubusercontent.com/107667158/222337717-63dc829c-3f03-46a2-a075-0d30fcd40412.png)
-![8 회원정보 수정](https://user-images.githubusercontent.com/107667158/222337719-7e1c8f57-7e31-4bae-a6fa-cafca61f7bf8.png)
 
 ![erd](https://user-images.githubusercontent.com/107667158/221791848-6b16d2a1-3a9e-422a-b6e9-7ed9b60bb0c4.png)
 
 **1. Login(로그인 화면)**
+
 ![1 login](https://user-images.githubusercontent.com/107667158/222337704-6d7ddc21-ed48-4219-9239-96a0b5a97384.png)
 * 주요 기능
   - Spring Security를 이용한 로그인 인증
 
 **2. 회원가입(회원가입 화면)**
+
 ![2 회원가입 validChk](https://user-images.githubusercontent.com/107667158/222337707-f2a52119-12db-4e57-b2f5-68d955fa8992.png)
 * 주요 기능
   - Spring Security를 이용한 회원가입
@@ -69,6 +62,7 @@ Spring Boot
   - validator 추상클래스를 이용한 중복 검사
   
 **3. 게시판 리스트**
+
 ![4 게시판 리스트](https://user-images.githubusercontent.com/107667158/222337712-11f86c7a-b513-4f7b-92bd-c1b8fe75b190.png)
 * 주요 기능
   - 게시글 리스트 구현
