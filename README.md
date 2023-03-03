@@ -24,13 +24,10 @@
 Spring Boot
 * Spring Web
 * Lombok
-
 * Spring Data JPA
 * MySQL Driver
-
 * JDBC api
 * Log4j2
-
 * Spring Security
 * Thymeleaf
 * Validation
@@ -89,7 +86,6 @@ Spring Boot
 
   
  ## 🛠 현 시점 추가 및 수정사항
-  - 회원 정보 수정 api 구현 ok
   - 댓글 CRUD 구현
   - 검색 api 구현
 
